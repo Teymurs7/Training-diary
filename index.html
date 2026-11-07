@@ -1,85 +1,189 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#172b3a"><title>Training Log — дневник тренировок</title>
-<style>
-:root{--bg:#f3f5f7;--card:#fff;--ink:#172b3a;--muted:#687786;--line:#dce2e7;--accent:#245d7a;--accent2:#dcecf4;--good:#24744d;--warn:#9b6422;--shadow:0 5px 22px #1a2a3810}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}.top{background:var(--ink);color:#fff;padding:18px max(16px,calc((100vw - 1050px)/2));position:sticky;top:0;z-index:5;box-shadow:0 3px 12px #0002}.toprow{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-weight:800;letter-spacing:.08em}.brand small{display:block;font-weight:500;letter-spacing:0;color:#c5d1d9;font-size:12px}.wrap{max-width:1050px;margin:20px auto;padding:0 14px 60px}.tabs{display:flex;gap:7px;overflow:auto;margin:0 0 16px}.tab,.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:11px;padding:9px 13px;white-space:nowrap}.tab.active,.btn.primary{background:var(--accent);color:white;border-color:var(--accent)}.btn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}.btn.small{padding:6px 9px;font-size:13px}.btn.ghost{background:transparent}.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px}.hero{background:linear-gradient(120deg,#172b3a,#245d7a);color:white;border:0}.hero .muted{color:#d3e0e8}.muted{color:var(--muted)}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#ffffff18;border:1px solid #ffffff25;border-radius:12px;padding:11px}.stat b{font-size:22px;display:block}.stat span{font-size:12px;color:#d3e0e8}.weekgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.daytile{border:1px solid var(--line);border-radius:12px;padding:10px 7px;text-align:center;background:white;cursor:pointer}.daytile.selected{outline:2px solid var(--accent);background:var(--accent2)}.daytile b{display:block}.tag{display:inline-block;border-radius:99px;padding:3px 8px;font-size:11px;font-weight:700;background:#edf0f3;color:#465461}.tag.heavy{background:#f8e6e4;color:#9d332b}.tag.medium{background:#fff0d9;color:#8a5a12}.tag.light{background:#e3f1e9;color:#246744}.exercise{border:1px solid var(--line);border-radius:13px;margin:10px 0;overflow:hidden}.exhead{padding:12px 13px;background:#fafbfc;display:flex;justify-content:space-between;gap:8px;align-items:center}.exname{font-weight:700}.exmeta{font-size:12px;color:var(--muted)}.settable{width:100%;border-collapse:collapse}.settable th,.settable td{padding:8px 7px;text-align:center;border-top:1px solid var(--line);font-size:13px}.settable th{color:var(--muted);font-weight:600;background:#fff}.settable input{width:100%;min-width:48px;border:1px solid var(--line);border-radius:8px;padding:7px 4px;text-align:center;background:#fff;color:var(--ink)}.settable input:focus{outline:2px solid #8bb9d0;border-color:transparent}.done{width:19px;height:19px;accent-color:var(--good)}.smallnote{font-size:12px;color:var(--muted)}.timerbox{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.timer{font-size:32px;font-weight:800;font-variant-numeric:tabular-nums;min-width:100px}.field{border:1px solid var(--line);border-radius:9px;padding:8px;background:white;color:var(--ink)}.hidden{display:none!important}.bars{display:flex;align-items:end;gap:8px;height:170px;padding:12px 5px 0;border-bottom:1px solid var(--line)}.barcol{flex:1;min-width:0;text-align:center;height:100%;display:flex;flex-direction:column;justify-content:end;gap:5px}.bar{background:#4b829f;border-radius:6px 6px 0 0;min-height:2px}.barlabel{font-size:10px;color:var(--muted);overflow:hidden}.historyitem{border:1px solid var(--line);padding:12px;border-radius:11px;margin:8px 0}.empty{padding:26px;text-align:center;color:var(--muted)}.footer{font-size:12px;color:var(--muted);text-align:center;padding:16px}.notice{background:#fff7e9;border:1px solid #f0dfbd;border-radius:11px;padding:11px;font-size:13px;color:#75511f}.actions{display:flex;gap:8px;flex-wrap:wrap}.title{font-size:23px;font-weight:800;margin:0 0 5px}.subtitle{color:var(--muted);margin:0 0 14px}.sectiontitle{font-size:18px;font-weight:800;margin:0 0 10px}.daytitle{font-size:20px;font-weight:800}.progress{height:7px;background:#e8edf0;border-radius:9px;overflow:hidden}.progress>i{display:block;height:100%;background:var(--good);width:0}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:650px){.wrap{margin:12px auto}.grid{grid-template-columns:repeat(3,1fr)}.weekgrid{grid-template-columns:repeat(5,minmax(58px,1fr));overflow:auto}.panel{padding:13px}.two{grid-template-columns:1fr}.top{padding:13px 14px}.settable th,.settable td{padding:7px 4px}.settable input{padding:7px 2px;font-size:13px}.exhead{align-items:flex-start}.title{font-size:20px}}
-@media print{.top,.tabs,.no-print,.footer{display:none!important}body{background:#fff}.wrap{max-width:none;margin:0;padding:0}.panel{box-shadow:none;break-inside:avoid}.exercise{break-inside:avoid}}
-</style>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/icon-192.png" sizes="192x192">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дневник тренировок</title>
+
+    <!-- PWA Manifest & Theme -->
+    <link rel="manifest" href="/training-diary/manifest.webmanifest">
+    <meta name="theme-color" content="#172b3a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Тренировки">
+    <link rel="apple-touch-icon" href="/training-diary/icons/icon-192.png">
+
+    <style>
+        :root {
+            --bg-color: #f3f5f7;
+            --card-bg: #ffffff;
+            --primary: #172b3a;
+            --accent: #20b2aa;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --success: #2e8b57;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text);
+            margin: 0;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .install-banner {
+            background: #e8f4f8;
+            border: 1px solid var(--accent);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            text-align: center;
+            display: none;
+        }
+
+        .install-banner button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        select, button {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background: #fff;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-primary:active {
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
-<header class="top"><div class="toprow"><div class="brand">TRAINING LOG<small>Персональный тренировочный дневник</small></div><div class="row"><button class="btn small" id="quickExport">Экспорт данных</button></div></div></header>
-<main class="wrap">
-<nav class="tabs no-print" id="tabs"><button class="tab active" data-tab="workout">Тренировка</button><button class="tab" data-tab="cycle">Цикл 5 недель</button><button class="tab" data-tab="stats">Прогресс</button><button class="tab" data-tab="history">История</button><button class="tab" data-tab="settings">Данные</button></nav>
-<section id="view-workout">
- <div class="panel hero"><div class="row between"><div><div class="muted" id="weekLabel">Неделя 1 · Понедельник</div><h1 class="title" id="workoutTitle">Спина + бицепс (А)</h1><div class="muted" id="workoutType">Тяжёлая тренировка · 6 повторений</div></div><span class="tag" id="dayTag">ПН</span></div><div class="grid" style="margin-top:15px"><div class="stat"><b id="setCount">16</b><span>рабочих подходов</span></div><div class="stat"><b id="exerciseCount">7</b><span>упражнений</span></div><div class="stat"><b id="doneCount">0%</b><span>выполнено</span></div></div><div class="progress" style="margin-top:13px;background:#ffffff35"><i id="progressBar" style="background:#b8e2ca"></i></div></div>
- <div class="panel no-print"><div class="row between"><div><div class="sectiontitle">Выбор тренировки</div><div class="smallnote">Выбери неделю и день. Записи сохраняются автоматически.</div></div><select class="field" id="weekSelect" aria-label="Неделя"><option value="1">Неделя 1</option><option value="2">Неделя 2</option><option value="3">Неделя 3</option><option value="4">Неделя 4</option><option value="5">Неделя 5</option></select></div><div class="weekgrid" id="dayPicker" style="margin-top:12px"></div></div>
- <div id="exerciseList"></div>
- <div class="panel no-print"><div class="sectiontitle">Таймер отдыха</div><div class="timerbox"><div class="timer" id="timerDisplay">01:30</div><div class="row"><button class="btn primary" id="timerStart">Старт</button><button class="btn" id="timerPause">Пауза</button><button class="btn" id="timerReset">Сброс</button></div><select class="field" id="timerPreset"><option value="60">60 секунд</option><option value="90" selected>90 секунд</option><option value="120">120 секунд</option><option value="150">150 секунд</option></select></div><div class="smallnote" style="margin-top:8px">Таймер работает, пока открыта эта страница.</div></div>
- <div class="panel no-print"><div class="row between"><div><div class="sectiontitle">Завершение тренировки</div><div class="smallnote">Сохраняет дату и результаты выбранного дня в историю.</div></div><button class="btn primary" id="finishWorkout">Завершить тренировку</button></div><div id="finishMsg" class="smallnote" style="margin-top:8px"></div></div>
-</section>
-<section id="view-cycle" class="hidden"><h1 class="title">План цикла</h1><p class="subtitle">Пять недель · одна тяжёлая тренировка в неделю</p><div class="panel" id="cycleTable"></div><div class="notice">Тяжёлая: 6 повторений · Средняя: 10–12 · Лёгкая: 15–20. Разминочные подходы не записываются как рабочие.</div></section>
-<section id="view-stats" class="hidden"><h1 class="title">Прогресс</h1><p class="subtitle">Динамика рабочих весов по упражнениям на основе сохранённых записей.</p><div class="panel"><div class="row between"><b>Выбери упражнение</b><select class="field" id="chartExercise"></select></div><div id="chartArea" style="margin-top:12px"></div><div class="smallnote" id="chartCaption"></div></div><div class="panel"><div class="sectiontitle">Объём по тренировкам</div><div id="volumeArea"></div></div></section>
-<section id="view-history" class="hidden"><div class="row between"><div><h1 class="title">История тренировок</h1><p class="subtitle">Завершённые тренировки и их результаты.</p></div><button class="btn small no-print" id="clearHistory">Очистить историю</button></div><div id="historyList"></div></section>
-<section id="view-settings" class="hidden"><h1 class="title">Данные и резервная копия</h1><p class="subtitle">Все записи хранятся локально в браузере на этом устройстве.</p><div class="panel"><div class="sectiontitle">Резервное копирование</div><p class="smallnote">Скачивай JSON-файл периодически, чтобы не потерять результаты при очистке данных браузера или смене устройства.</p><div class="actions"><button class="btn primary" id="backupBtn">Скачать резервную копию</button><label class="btn" for="restoreFile">Восстановить из файла</label><input id="restoreFile" type="file" accept="application/json" class="hidden"></div></div><div class="panel"><div class="sectiontitle">Экспорт дневника</div><div class="actions"><button class="btn" id="csvBtn">Экспорт CSV (Excel)</button><button class="btn" id="printBtn">Печать / сохранить PDF</button></div></div><div class="panel"><div class="sectiontitle">Настройки</div><div class="row between"><span class="smallnote">Текущий цикл: <b id="activeCycleLabel">Цикл 1</b></span><button class="btn small primary" id="newCycleBtn">Начать новый 5-недельный цикл</button></div><p class="smallnote">Новый цикл создаёт отдельную историю и не удаляет предыдущие результаты.</p><label class="smallnote">Имя цикла<br><input class="field" id="cycleName" value="Основной цикл" style="width:100%;margin-top:5px"></label><p class="smallnote">Версия приложения 1.0 · Автосохранение включено.</p></div><div class="notice">Важно: браузерное хранилище привязано к браузеру и устройству. Для переноса данных используй резервную копию JSON.</div></section>
-<div class="footer">Training Log · локальный дневник · данные не отправляются на сервер</div>
-</main>
-<script>
-const DAYS=['Понедельник','Вторник','Среда','Четверг','Пятница'];
-const DAYSHORT=['ПН','ВТ','СР','ЧТ','ПТ'];
-const FOCUS={'Понедельник':'Спина + бицепс (А)','Вторник':'Грудь + плечи + трицепс (А)','Среда':'Ноги','Четверг':'Спина + бицепс (Б)','Пятница':'Грудь + плечи + трицепс (Б)'};
-const ROT={1:[6,'10–12','15–20','15–20','10–12'],2:['10–12',6,'15–20','10–12','15–20'],3:['15–20','10–12',6,'15–20','10–12'],4:['10–12','15–20','15–20',6,'10–12'],5:['15–20','10–12','15–20','10–12',6]};
-const EX={
-'Понедельник':[['Тяга верхнего блока широким хватом',2],['Тяга верхнего блока узким хватом',2],['Тяга на тренажёре на центр спины',2],['Обратная разводка / фейспул',2],['Подъём EZ-штанги на бицепс',3],['Подъём штанги на брахиалис',2],['Сгибание рук на блочном тренажёре',3]],
-'Вторник':[['Жим в тренажёре',2],['Разводка в тренажёре',2],['Пуловер',2],['Разведение рук на плечи в тренажёре',3],['Поднятие блина перед собой',2],['Разгибание трицепса из-за головы на тренажёре',3]],
-'Среда':[['Приседания',3],['Ягодичный мост в тренажёре',3],['Сгибание ног в тренажёре',3],['Разгибание ног в тренажёре',3],['Икры в тренажёре',3]],
-'Четверг':[['Тяга верхнего блока широким хватом',2],['Горизонтальная тяга блока к поясу узким хватом',2],['Тяга на тренажёре на центр спины',2],['Обратная разводка / фейспул',2],['Подъём EZ-штанги на бицепс',3],['Подъём штанги на брахиалис',2],['Сгибание рук на блочном тренажёре',3]],
-'Пятница':[['Жим в тренажёре под углом',2],['Разводка в тренажёре под углом',2],['Пуловер',2],['Разведение рук на плечи в тренажёре',3],['Поднятие блина перед собой',2],['Разгибание рук на трицепс на блочном тренажёре',3]]};
-const STORE='trainingLogLocal_v1';
-let db=loadDB(), week=1, day='Понедельник', timerLeft=90,timerId=null;
-db.entries ||= {}; db.history ||= []; db.cycles ||= [{id:'cycle-1',name:db.cycleName||'Цикл 1',startedAt:new Date().toISOString()}]; db.activeCycleId ||= db.cycles[db.cycles.length-1].id; saveDB();
-function loadDB(){try{return JSON.parse(localStorage.getItem(STORE))||{entries:{},history:[],cycleName:'Основной цикл'}}catch(e){return{entries:{},history:[],cycleName:'Основной цикл'}}}
-function saveDB(){try{localStorage.setItem(STORE,JSON.stringify(db));}catch(e){alert('Не удалось сохранить в хранилище браузера. Скачай резервную копию в разделе «Данные».')}}
-function key(w,d){return `${db.activeCycleId}|${w}|${d}`}
-function activeCycle(){return db.cycles.find(c=>c.id===db.activeCycleId)||{id:db.activeCycleId,name:'Текущий цикл'}}
-function planReps(w,d){return ROT[w][DAYS.indexOf(d)]}
-function setsFor(d){return EX[d].reduce((n,x)=>n+x[1],0)}
-function entry(w,d){const k=key(w,d);if(!db.entries[k])db.entries[k]={exercises:{},notes:'',finished:false};EX[d].forEach(([name,n])=>{if(!db.entries[k].exercises[name])db.entries[k].exercises[name]=Array.from({length:n},()=>({weight:'',reps:'',done:false}));while(db.entries[k].exercises[name].length<n)db.entries[k].exercises[name].push({weight:'',reps:'',done:false});});return db.entries[k]}
-function renderDayPicker(){document.getElementById('dayPicker').innerHTML=DAYS.map((d,i)=>{let r=planReps(week,d),t=r===6?'Тяжёлая':r==='10–12'?'Средняя':'Лёгкая';return `<button class="daytile ${day===d?'selected':''}" data-day="${d}"><b>${DAYSHORT[i]}</b><span class="smallnote">${t}</span><br><span class="tag ${r===6?'heavy':r==='10–12'?'medium':'light'}">${r}</span></button>`}).join('');document.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>{day=b.dataset.day;renderWorkout()})}
-function renderWorkout(){const r=planReps(week,day),e=entry(week,day),total=setsFor(day),done=Object.values(e.exercises).flat().filter(s=>s.done).length;document.getElementById('weekSelect').value=week;document.getElementById('weekLabel').textContent=`Неделя ${week} · ${day}`;document.getElementById('workoutTitle').textContent=FOCUS[day];document.getElementById('workoutType').textContent=`${r===6?'Тяжёлая':r==='10–12'?'Средняя':'Лёгкая'} тренировка · ${r} повторений`;document.getElementById('dayTag').textContent=DAYSHORT[DAYS.indexOf(day)];document.getElementById('setCount').textContent=total;document.getElementById('exerciseCount').textContent=EX[day].length;document.getElementById('doneCount').textContent=Math.round(done/total*100)+'%';document.getElementById('progressBar').style.width=(done/total*100)+'%';renderDayPicker();
- document.getElementById('exerciseList').innerHTML=EX[day].map(([name,n],ei)=>{let sets=e.exercises[name];return `<div class="exercise"><div class="exhead"><div><div class="exname">${name}</div><div class="exmeta">${n} рабочих подхода · цель ${r} повторений</div></div><span class="tag">${ei+1}/${EX[day].length}</span></div><table class="settable"><thead><tr><th>Подход</th><th>Вес, кг</th><th>Повторы</th><th>Готово</th></tr></thead><tbody>${sets.slice(0,n).map((s,i)=>`<tr><td>${i+1}</td><td><input inputmode="decimal" type="number" min="0" step="0.5" placeholder="—" value="${esc(s.weight)}" data-ex="${ei}" data-set="${i}" data-field="weight"></td><td><input inputmode="numeric" type="number" min="0" step="1" placeholder="${r}" value="${esc(s.reps)}" data-ex="${ei}" data-set="${i}" data-field="reps"></td><td><input class="done" type="checkbox" ${s.done?'checked':''} data-ex="${ei}" data-set="${i}" data-field="done" aria-label="Подход выполнен"></td></tr>`).join('')}</tbody></table></div>`}).join('')+`<div class="panel"><label><b>Заметки к тренировке</b><textarea id="dayNotes" class="field" rows="3" style="display:block;width:100%;margin-top:8px;resize:vertical" placeholder="Самочувствие, энергия, комментарии...">${esc(e.notes||'')}</textarea></label></div>`;
- document.querySelectorAll('[data-field]').forEach(el=>el.addEventListener('input',updateSet));document.querySelectorAll('[data-field="done"]').forEach(el=>el.addEventListener('change',updateSet));document.getElementById('dayNotes').addEventListener('input',ev=>{e.notes=ev.target.value;saveDB()});document.getElementById('finishMsg').textContent=e.finished?`Тренировка отмечена завершённой: ${e.finishedAt||''}`:'';
-}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function updateSet(ev){let el=ev.target,ei=+el.dataset.ex,si=+el.dataset.set,field=el.dataset.field,name=EX[day][ei][0],e=entry(week,day);e.exercises[name][si][field]=field==='done'?el.checked:el.value;saveDB();let done=Object.values(e.exercises).flat().filter(s=>s.done).length,total=setsFor(day);document.getElementById('doneCount').textContent=Math.round(done/total*100)+'%';document.getElementById('progressBar').style.width=(done/total*100)+'%';}
-document.getElementById('weekSelect').onchange=e=>{week=+e.target.value;renderWorkout()};
-document.getElementById('finishWorkout').onclick=()=>{let e=entry(week,day);e.finished=true;e.finishedAt=new Date().toLocaleString('ru-RU');let id=key(week,day);db.history=db.history.filter(h=>h.id!==id);db.history.push({id,cycleId:db.activeCycleId,cycleName:activeCycle().name,week,day,date:new Date().toISOString(),focus:FOCUS[day]});saveDB();document.getElementById('finishMsg').textContent='Тренировка сохранена в истории.';};
-function showTab(tab){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));['workout','cycle','stats','history','settings'].forEach(v=>document.getElementById('view-'+v).classList.toggle('hidden',v!==tab));if(tab==='cycle')renderCycle();if(tab==='stats')renderStats();if(tab==='history')renderHistory();if(tab==='settings'){document.getElementById('cycleName').value=activeCycle().name||db.cycleName||'Основной цикл';document.getElementById('activeCycleLabel').textContent=activeCycle().name||activeCycle().id}}
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
-function renderCycle(){let html='<table class="settable"><thead><tr><th>Неделя</th>'+DAYS.map(d=>`<th>${DAYSHORT[DAYS.indexOf(d)]}</th>`).join('')+'</tr></thead><tbody>';for(let w=1;w<=5;w++){html+=`<tr><td><b>${w}</b></td>`+DAYS.map(d=>{let r=planReps(w,d),cl=r===6?'heavy':r==='10–12'?'medium':'light';return `<td><span class="tag ${cl}">${r}</span></td>`}).join('')+'</tr>'}html+='</tbody></table><p class="smallnote">ПН/ЧТ — спина + бицепс · ВТ/ПТ — грудь + плечи + трицепс · СР — ноги.</p>';document.getElementById('cycleTable').innerHTML=html}
-function allExerciseNames(){return [...new Set(Object.values(EX).flat().map(x=>x[0]))]}
-function renderStats(){let sel=document.getElementById('chartExercise'),prev=sel.value;sel.innerHTML=allExerciseNames().map(n=>`<option>${esc(n)}</option>`).join('');if(allExerciseNames().includes(prev))sel.value=prev;drawChart();sel.onchange=drawChart;let vols=[];for(let w=1;w<=5;w++){let total=0;DAYS.forEach(d=>{let e=db.entries[key(w,d)];if(e)total+=Object.values(e.exercises||{}).flat().filter(s=>s.done).length});vols.push(total)}document.getElementById('volumeArea').innerHTML=`<div class="bars">${vols.map((v,i)=>`<div class="barcol"><b>${v}</b><div class="bar" style="height:${Math.max(2,v/Math.max(1,...vols)*120)}px"></div><span class="barlabel">Нед. ${i+1}</span></div>`).join('')}</div><div class="smallnote">Количество отмеченных выполненными подходов по каждой неделе.</div>`}
-function drawChart(){let name=document.getElementById('chartExercise').value,points=[];for(let w=1;w<=5;w++)for(let d of DAYS){let e=db.entries[key(w,d)],sets=e?.exercises?.[name]||[];sets.forEach((s,i)=>{if(s.weight!==''&&Number(s.weight)>0)points.push({label:`Н${w} ${DAYSHORT[DAYS.indexOf(d)]}`,weight:Number(s.weight),reps:s.reps||''})})}let area=document.getElementById('chartArea');if(!points.length){area.innerHTML='<div class="empty">Пока нет записанных рабочих весов для этого упражнения.</div>';document.getElementById('chartCaption').textContent='Внеси вес хотя бы в один подход, чтобы увидеть график.';return}let max=Math.max(...points.map(p=>p.weight)),min=Math.min(...points.map(p=>p.weight)),range=max-min||1;area.innerHTML=`<div class="bars">${points.slice(-16).map(p=>`<div class="barcol"><b style="font-size:11px">${p.weight}</b><div class="bar" style="height:${30+(p.weight-min)/range*105}px"></div><span class="barlabel">${p.label}</span></div>`).join('')}</div>`;document.getElementById('chartCaption').textContent=`Показано до 16 последних записей. Вес: ${min}–${max} кг.`}
-function renderHistory(){let h=[...db.history].sort((a,b)=>new Date(b.date)-new Date(a.date));document.getElementById('historyList').innerHTML=h.length?h.map(x=>{let e=db.entries[x.id],count=e?Object.values(e.exercises||{}).flat().filter(s=>s.done).length:0;return `<div class="historyitem"><div class="row between"><b>${esc(x.focus)}</b><span class="tag">Неделя ${x.week}</span></div><div class="smallnote">${esc(x.cycleName||'Цикл')} · ${new Date(x.date).toLocaleString('ru-RU')} · ${count} подходов отмечено</div>${e?.notes?`<p class="smallnote">${esc(e.notes)}</p>`:''}</div>`}).join(''):'<div class="panel empty">Завершённых тренировок пока нет. Нажми «Завершить тренировку» после занятия.</div>'}
-function download(name,content,type){let blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-function backup(){download('training-log-backup-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(db,null,2),'application/json')}
-document.getElementById('backupBtn').onclick=backup;document.getElementById('quickExport').onclick=backup;
-document.getElementById('restoreFile').onchange=async ev=>{let f=ev.target.files[0];if(!f)return;try{let obj=JSON.parse(await f.text());if(!obj.entries||!obj.history)throw Error();if(!confirm('Заменить текущие данные данными из резервной копии?'))return;db=obj;saveDB();alert('Данные восстановлены.');renderWorkout()}catch(e){alert('Не удалось прочитать резервную копию.')}ev.target.value=''};
-document.getElementById('csvBtn').onclick=()=>{let rows=[['Неделя','День','Тренировка','Упражнение','Подход','План повторений','Вес, кг','Фактические повторения','Выполнено']];for(let w=1;w<=5;w++)for(let d of DAYS){let e=entry(w,d),r=planReps(w,d);EX[d].forEach(([name,n])=>e.exercises[name].slice(0,n).forEach((s,i)=>rows.push([w,d,FOCUS[d],name,i+1,r,s.weight,s.reps,s.done?'Да':'Нет'])))}let csv='\ufeff'+rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');download('training-log-'+new Date().toISOString().slice(0,10)+'.csv',csv,'text/csv;charset=utf-8')};
-document.getElementById('printBtn').onclick=()=>window.print();document.getElementById('cycleName').onchange=e=>{db.cycleName=e.target.value;activeCycle().name=e.target.value;saveDB();document.getElementById('activeCycleLabel').textContent=e.target.value};
-document.getElementById('newCycleBtn').onclick=()=>{if(!confirm('Начать новый 5-недельный цикл? История предыдущих циклов сохранится.'))return;let num=db.cycles.length+1,id='cycle-'+Date.now();db.cycles.push({id,name:'Цикл '+num,startedAt:new Date().toISOString()});db.activeCycleId=id;db.cycleName='Цикл '+num;week=1;day='Понедельник';saveDB();renderWorkout();document.getElementById('cycleName').value=db.cycleName;document.getElementById('activeCycleLabel').textContent=db.cycleName;alert('Новый цикл создан. Старые результаты сохранены в истории.');};document.getElementById('clearHistory').onclick=()=>{if(confirm('Очистить только список истории? Записи подходов останутся.')){db.history=[];saveDB();renderHistory()}};
-function timerRender(){let m=Math.floor(timerLeft/60),s=timerLeft%60;document.getElementById('timerDisplay').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
-document.getElementById('timerPreset').onchange=e=>{timerLeft=+e.target.value;timerRender()};document.getElementById('timerStart').onclick=()=>{if(timerId)return;timerId=setInterval(()=>{timerLeft--;timerRender();if(timerLeft<=0){clearInterval(timerId);timerId=null;document.getElementById('timerDisplay').textContent='ГОТОВО';try{if(navigator.vibrate)navigator.vibrate([250,100,250])}catch(e){}}},1000)};document.getElementById('timerPause').onclick=()=>{clearInterval(timerId);timerId=null};document.getElementById('timerReset').onclick=()=>{clearInterval(timerId);timerId=null;timerLeft=+document.getElementById('timerPreset').value;timerRender()};
-renderWorkout();
-</script>
-<script>if ('serviceWorker' in navigator && location.protocol !== 'file:') { window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(console.error)); }</script>
-</body></html>
+
+    <div class="container">
+        <h1>Дневник тренировок</h1>
+
+        <!-- Баннер для ручной установки PWA (если потребуется) -->
+        <div id="installBanner" class="install-banner">
+            <div>Установите приложение на экран телефона для работы офлайн</div>
+            <button id="installBtn">Установить приложение</button>
+        </div>
+
+        <div class="section">
+            <label for="weekSelect">Выберите неделю цикла:</label>
+            <select id="weekSelect">
+                <option value="1">Неделя 1</option>
+                <option value="2">Неделя 2</option>
+                <option value="3">Неделя 3</option>
+                <option value="4">Неделя 4</option>
+                <option value="5">Неделя 5</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <label for="daySelect">День тренировки:</label>
+            <select id="daySelect">
+                <option value="1">День A (Верх)</option>
+                <option value="2">День B (Низ)</option>
+                <option value="3">День C (Full Body)</option>
+            </select>
+        </div>
+
+        <button class="btn-primary" id="saveBtn">Сохранить данные</button>
+    </div>
+
+    <script>
+        // Регистрация Service Worker для PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/training-diary/sw.js', { scope: '/training-diary/' })
+                    .then(reg => console.log('ServiceWorker зарегистрирован, scope:', reg.scope))
+                    .catch(err => console.log('Ошибка регистрации ServiceWorker:', err));
+            });
+        }
+
+        // Перехват события установки для кастомного баннера
+        let deferredPrompt;
+        const installBanner = document.getElementById('installBanner');
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBanner.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    console.log('Пользователь принял предложение установки');
+                }
+                deferredPrompt = null;
+                installBanner.style.display = 'none';
+            }
+        });
+
+        // Сохранение базового состояния в localStorage для примера
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            const week = document.getElementById('weekSelect').value;
+            const day = document.getElementById('daySelect').value;
+            localStorage.setItem('training_selected_week', week);
+            localStorage.setItem('training_selected_day', day);
+            alert('Данные успешно сохранены локально!');
+        });
+    </script>
+</body>
+</html>
